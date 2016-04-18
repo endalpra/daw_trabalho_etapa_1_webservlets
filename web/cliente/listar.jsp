@@ -4,6 +4,8 @@
     Author     : Érico
 --%>
 
+<%@page import="br.edu.ifsul.modelo.Convenio"%>
+<%@page import="br.edu.ifsul.modelo.Telefone"%>
 <%@page import="br.edu.ifsul.modelo.Cliente"%>
 <%@page import="br.edu.ifsul.dao.ClienteDAO"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
@@ -35,21 +37,33 @@
             </thead>
             <tbody>
                 <%
-                for(Cliente c :clienteDao.getLista()){
-                    %>
-                    <tr>
-                        <td><%=c.getId()%></td>
-                        <td><%=c.getNome()%></td>
-                        <td><%=c.getCep()%></td>
-                        <td><%=c.getEmail()%></td>
-                        <td><%=c.getEndereco()%></td>
-                        <td><%=c.getConvenios()%></td>
-                        <td><%=c.getTelefones()%></td>
-                        <td><a href="ServletCliente?acao=alterar&id=<%=c.getId()%>">Alterar</td>
-                        <td><a href="ServletCliente?acao=excluir&id=<%=c.getId()%>">Excluir</td>
-                    </tr>
-                <%    
-                }
+                    for (Cliente c : clienteDao.getLista()) {
+                %>
+                <tr>
+                    <td><%=c.getId()%></td>
+                    <td><%=c.getNome()%></td>
+                    <td><%=c.getCep()%></td>
+                    <td><%=c.getEmail()%></td>
+                    <td><%=c.getEndereco()%></td> 
+                    <td>
+                        <%
+                            for (Convenio co : c.getConvenios()) {
+                        %>
+                        <%=co.getNome()+" "%>
+                        <%}%>
+                    </td>
+                    <td>
+                        <%
+                            for (Telefone t : c.getTelefones()) {
+                        %>
+                        <%="("+t.getCodigo_area()+")"+ t.getTelefoneId().getNumero()+" "%>
+                        <%}%>
+                    </td>
+                    <td><a href="ServletCliente?acao=alterar&id=<%=c.getId()%>">Alterar</td>
+                    <td><a href="ServletCliente?acao=excluir&id=<%=c.getId()%>">Excluir</td>
+                </tr>
+                <%
+                    }
                 %>
             </tbody>
         </table>

@@ -24,7 +24,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Cliente</th>
                     <th>Número</th>
+                    <th>Agência</th>
                     <th>Saldo</th>
                     <th>Data abertura</th>
                     <th>Ativa</th>
@@ -41,12 +43,14 @@
                 %>
                 <tr>
                     <td><%=p.getId()%></td>
+                    <td><%=p.getCliente().getNome()%></td>
                     <td><%=p.getNumero()%></td>
+                    <td><%=p.getAgencia().getNumero()%></td>
                     <td><%=p.getSaldo()%></td>
-                    <td><%=p.getData_abertura()%></td>
+                    <td><%=formatador.format(p.getData_abertura().getTime())%></td>
                     <td><%=p.getAtiva()%></td>
                     <td><%=p.getTaxa_atualizacao()%></td>
-                    <td><%=p.getData_atualizacao()%></td>
+                    <td><%=formatador.format(p.getData_atualizacao().getTime())%></td>
                     <td><a href="ServletPoupanca?acao=alterar&id=<%=p.getId()%>">Alterar</td>
                     <td><a href="ServletPoupanca?acao=excluir&id=<%=p.getId()%>">Excluir</td>
                 </tr>
