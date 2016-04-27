@@ -63,8 +63,6 @@ public class ServletCliente extends HttpServlet {
                 dao.getObjetoSelecionado().setId(id);
                 dao.getObjetoSelecionado().setNome(request.getParameter("nome")); 
                 dao.getObjetoSelecionado().setCep(request.getParameter("cep"));
-                //dao.getObjetoSelecionado().setConvenios(request.getParameter("convenios"));
-                //dao.getObjetoSelecionado().setTelefones(request.getParameter("cep"));
                 dao.getObjetoSelecionado().setEmail(request.getParameter("email"));
                 dao.getObjetoSelecionado().setEndereco(request.getParameter("endereco"));                
                 if(dao.validaObjeto(dao.getObjetoSelecionado())){
